@@ -5,7 +5,7 @@
         <mat-card-content>
             
             <h2 class="register-caption">Register</h2>
-            <form>
+            <form [formGroup]="signupForm" (ngSubmit)="signup($event)">
                 <div class="form-input">
                     <mat-form-field>
                         <mat-label>
@@ -38,7 +38,7 @@
                         <input matInput placeholder="Confirm your password" name="confirmPassword" type="password" required formControlName="confirmPassword">
                     </mat-form-field>
                 </div>
-                <button mat-raised-button color="primary" class="register-button" (click)="signup()" [disabled]="signupForm.invalid"> Register </button>
+                <button mat-raised-button color="primary" class="register-button" (click)="signup($event)" [disabled]="signupForm.invalid" > Register </button>
             </form>
         </mat-card-content>
     </mat-card>
