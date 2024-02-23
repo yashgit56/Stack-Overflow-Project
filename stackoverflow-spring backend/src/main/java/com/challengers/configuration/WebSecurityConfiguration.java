@@ -8,9 +8,14 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.challengers.services.jwt.UserDetailsServiceClass;
+import com.challengers.services.questions.QuestionService;
+import com.challengers.services.questions.QuestionServiceClass;
 
 @Configuration
 @EnableMethodSecurity
@@ -45,4 +50,14 @@ public class WebSecurityConfiguration {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
 		return configuration.getAuthenticationManager();
 	}
+	
+	 @Bean
+	 public UserDetailsService userDetailsService() {
+	    return new UserDetailsServiceClass(); // Or inject an instance if it requires dependencies
+	 }
+	 
+	 @Bean
+	 public QuestionService questionService() {
+	    return new QuestionServiceClass(null, null); // Or inject an instance if it requires dependencies
+	 }
 }

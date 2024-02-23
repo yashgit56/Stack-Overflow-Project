@@ -1,4 +1,4 @@
-package com.challengers.services;
+package com.challengers.services.user;
 
 import com.challengers.dtos.RegisterDTO;
 import com.challengers.dtos.UserDTO;

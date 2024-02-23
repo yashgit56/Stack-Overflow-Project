@@ -20,7 +20,7 @@ export class RegisterComponent {
 
   ngOnInit(){
     this.signupForm = this.fb.group({
-      name:['',Validators.required],
+      username:['',Validators.required],
       email:['',Validators.required],
       password:['',Validators.required],
       confirmPassword:['',Validators.required ],
@@ -53,7 +53,7 @@ export class RegisterComponent {
     }, (error:any)=>{
       this.snackBar.open("Registration failed, Please try again later","Close",{duration:5000});
     })
-    // Additional signup logic here
+    // Additional signup logic her
   }
 
 }

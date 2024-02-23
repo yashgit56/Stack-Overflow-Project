@@ -44,4 +44,10 @@ public class QuestionsController {
 		if(singlequestionDto == null) return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(singlequestionDto);
 	}
+	@GetMapping("/questions/{userId}/{pageNumber}")
+	public ResponseEntity<AllQuestionResponseDto> getQuestionsByUserId(@PathVariable Long userId, @PathVariable int pageNumber){
+		AllQuestionResponseDto allQuestionResponseDto = questionService.getQuestionByUserId(userId,pageNumber);
+		return ResponseEntity.ok(allQuestionResponseDto);
+	}
+	
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.challengers.dtos.AnswerDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -80,6 +81,18 @@ public class Answers {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Questions question;
+
+	public AnswerDto getAnswerDto() {
+		// TODO Auto-generated method stub
+		AnswerDto answerDto = new AnswerDto();
+		answerDto.setId(id);
+		answerDto.setBody(body);
+		answerDto.setCreatedDate(createdDate);
+		answerDto.setUserId(user.getId());
+		answerDto.setUsername(user.getUsername());
+		answerDto.setQuestionId(question.getId());
+		return answerDto;
+	}
 	
 	
 	

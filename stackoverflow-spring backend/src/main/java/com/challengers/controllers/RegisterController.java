@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.challengers.dtos.RegisterDTO;
 import com.challengers.dtos.UserDTO;
-import com.challengers.services.UserService;
+import com.challengers.services.user.UserService;
 
 @RestController
 @RequestMapping("/register")
