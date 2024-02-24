@@ -16,23 +16,7 @@ export class AuthService {
   }
 
   login(loginRequest: any): Observable<any> {
-    return this.http.post(BASIC_URL + "authentication", loginRequest,
-    {observe: 'response'})
-    .pipe(
-      tap(__ => this.log("User Authenticated")),
-      map((res: HttpResponse<any>) => {
-        this.storage.saveUser(res.body) ;
-        const tokenLength = res.headers.get(AUTH_HEADER)?.length ; 
-        const bearerToken= res.headers.get(AUTH_HEADER)?.substring(7, tokenLength) ;
-        if (typeof bearerToken === 'string') {
-          this.storage.saveToken(bearerToken);
-        } else {
-          // Handle the case where bearerToken is undefined
-        }
-        
-        return res;
-      })
-    );
+    return this.http.post(BASIC_URL + "authentication", loginRequest);
   }
 
   log(message: string): void{
