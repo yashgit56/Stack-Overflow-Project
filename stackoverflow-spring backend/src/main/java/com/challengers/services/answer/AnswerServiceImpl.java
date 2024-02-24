@@ -47,4 +47,17 @@ public class AnswerServiceImpl implements AnswerService {
 		}
 		return null;
 	}
+	
+	public AnswerDto approveAnswer(Long answerId) {
+		Optional<Answers> optionalAnswer = answerRepository.findById(answerId);
+		if(optionalAnswer.isPresent()) {
+			Answers answer = optionalAnswer.get();
+			answer.setApproved(true);
+			Answers updatedAnswer = answerRepository.save(answer);
+			AnswerDto updatedAnswerDto = new AnswerDto();
+			updatedAnswerDto.setId(updatedAnswer.getId());
+			return updatedAnswerDto;
+		}
+		return null;
+	}
 }

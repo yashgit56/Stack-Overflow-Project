@@ -19,6 +19,12 @@ public class QuestionDTO {
 	
 	private String username;
 
+	private Integer voteCount;
+	
+	private int voted;
+	
+	private boolean hasApprovedAnswer = false;
+	
 	public Long getId() {
 		return id;
 	}
@@ -66,4 +72,30 @@ public class QuestionDTO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public Integer getVoteCount() {
+		return voteCount;
+	}
+
+	public void setVoteCount(Integer voteCount) {
+		this.voteCount = voteCount;
+	}
+
+	public int getVoted() {
+		return voted;
+	}
+
+	public void setVoted(int voted) {
+		this.voted = voted;
+	}
+
+	public boolean isHasApprovedAnswer() {
+		return hasApprovedAnswer;
+	}
+
+	public void setHasApprovedAnswer(boolean hasApprovedAnswer) {
+		this.hasApprovedAnswer = hasApprovedAnswer;
+	}
+
+
 }

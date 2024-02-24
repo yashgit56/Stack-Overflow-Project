@@ -1,6 +1,7 @@
 package com.challengers.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.challengers.dtos.AnswerDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Answers {
@@ -30,6 +33,8 @@ public class Answers {
 	
 	private Date createdDate;
 	
+	private boolean approved = false;
+	
 	public Long getId() {
 		return id;
 	}
@@ -40,6 +45,14 @@ public class Answers {
 
 	public String getBody() {
 		return body;
+	}
+
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
 	}
 
 	public void setBody(String body) {
@@ -81,7 +94,13 @@ public class Answers {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Questions question;
+	
+	private Integer voteCount = 0;
 
+	@OneToMany(mappedBy = "answer",cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<AnswerVote> answerVoteList;
+	
 	public AnswerDto getAnswerDto() {
 		// TODO Auto-generated method stub
 		AnswerDto answerDto = new AnswerDto();
@@ -89,11 +108,29 @@ public class Answers {
 		answerDto.setBody(body);
 		answerDto.setCreatedDate(createdDate);
 		answerDto.setUserId(user.getId());
+		answerDto.setApproved(approved);
+		answerDto.setVoted(voteCount); 
 		answerDto.setUsername(user.getUsername());
 		answerDto.setQuestionId(question.getId());
 		return answerDto;
 	}
-	
-	
-	
+
+	public int getVoteCount() {
+		// TODO Auto-generated method stub
+		return voteCount;
+	}
+
+	public void setVoteCount(int i) {
+		// TODO Auto-generated method stub
+		voteCount = i;
+		
+	}
+
+	public List<AnswerVote> getAnswerVoteList() {
+		return answerVoteList;
+	}
+
+	public void setAnswerVoteList(List<AnswerVote> answerVoteList) {
+		this.answerVoteList = answerVoteList;
+	}
 }

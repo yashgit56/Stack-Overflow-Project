@@ -12,6 +12,16 @@ public class AnswerDto {
 	private Long userId;
 	private String username;
 	private Image file;
+	private boolean approved;
+	
+	private int voted;
+	
+	public boolean isApproved() {
+		return approved;
+	}
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -57,5 +67,12 @@ public class AnswerDto {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	public int getVoted() {
+		return voted;
+	}
+	public void setVoted(int voted) {
+		this.voted = voted;
+	}
+	
 	
 }

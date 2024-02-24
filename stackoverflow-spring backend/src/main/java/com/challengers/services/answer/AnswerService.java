@@ -6,4 +6,6 @@ public interface AnswerService {
 
 	AnswerDto postAnswer(AnswerDto answerDto);
 
+	AnswerDto approveAnswer(Long answerId);
+
 }

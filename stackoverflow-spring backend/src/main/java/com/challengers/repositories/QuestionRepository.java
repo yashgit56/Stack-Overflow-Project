@@ -12,4 +12,6 @@ public interface QuestionRepository extends JpaRepository<Questions, Long>{
 
 	Page<Questions> findAllByUserId(Long userId, Pageable paging);
 
+	Page<Questions> findAllByTitleContaining(String title, Pageable pageable);
+
 }

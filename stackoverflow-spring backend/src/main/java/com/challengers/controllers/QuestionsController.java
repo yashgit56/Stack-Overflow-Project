@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.challengers.dtos.AllQuestionResponseDto;
 import com.challengers.dtos.QuestionDTO;
+import com.challengers.dtos.QuestionSearchResponseDto;
 import com.challengers.dtos.singleQuestionDto;
 import com.challengers.services.questions.QuestionService;
 
@@ -38,9 +39,9 @@ public class QuestionsController {
 		AllQuestionResponseDto allQuestionResponseDto = questionService.getAllQuestions(pageNumber);
 		return ResponseEntity.ok(allQuestionResponseDto);
 	}
-	@GetMapping("/question/{questionId}")
-	public ResponseEntity<?> getQuestionById(@PathVariable Long questionId){
-		singleQuestionDto singlequestionDto = questionService.getQuestionById(questionId);
+	@GetMapping("/question/{questionId}/{userId}")
+	public ResponseEntity<?> getQuestionById(@PathVariable Long questionId,@PathVariable Long userId){
+		singleQuestionDto singlequestionDto = questionService.getQuestionById(questionId,userId);
 		if(singlequestionDto == null) return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(singlequestionDto);
 	}
@@ -48,6 +49,15 @@ public class QuestionsController {
 	public ResponseEntity<AllQuestionResponseDto> getQuestionsByUserId(@PathVariable Long userId, @PathVariable int pageNumber){
 		AllQuestionResponseDto allQuestionResponseDto = questionService.getQuestionByUserId(userId,pageNumber);
 		return ResponseEntity.ok(allQuestionResponseDto);
+	}
+	
+	@GetMapping("/search/{title}/{pageNumber}")
+	public ResponseEntity<?> searchQuestionByTitle(int pageNumber, String title){
+		QuestionSearchResponseDto questionSearchResponseDto = questionService.searchQuestionByTitle(title, pageNumber) ;
+		if(questionSearchResponseDto == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(questionSearchResponseDto) ;	
 	}
 	
 }

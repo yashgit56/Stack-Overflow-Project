@@ -2,6 +2,7 @@ package com.challengers.entities;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.challengers.dtos.QuestionDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,6 +20,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -39,12 +42,18 @@ public class Questions {
 	
 	private List<String> tags;
 	
+	private Integer voteCount = 0;
+	
 	@ManyToOne(fetch=FetchType.LAZY, optional=false)
 	@JoinColumn(name="user_id", nullable=false)
 	@OnDelete(action=OnDeleteAction.CASCADE) 
 	@JsonIgnore
 	private User user;
 
+	@OneToMany(mappedBy = "questions" , cascade=CascadeType.ALL)
+	@JsonIgnore
+	private List<QuestionVote> questionVoteList;
+	
 	public Long getId() {
 		return id;
 	}
@@ -99,9 +108,26 @@ public class Questions {
 		questionDto.setTitle(title);
 		questionDto.setBody(body);
 		questionDto.setTags(tags);
+		questionDto.setVoteCount(voteCount);
 		questionDto.setUserId(user.getId());
 		questionDto.setUsername(user.getUsername());
 		return questionDto;
+	}
+
+	public int getVoteCount() {
+		// TODO Auto-generated method stub
+		return voteCount;
+	}
+
+	public void setVoteCount(int i) {
+		// TODO Auto-generated method stub
+		voteCount = i;
+		
+	}
+
+	public List<QuestionVote> getQuestionVoteList() {
+		// TODO Auto-generated method stub
+		return questionVoteList;
 	}
 	
 }
