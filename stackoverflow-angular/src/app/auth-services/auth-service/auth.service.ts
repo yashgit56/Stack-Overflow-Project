@@ -16,7 +16,15 @@ export class AuthService {
   }
 
   login(loginRequest: any): Observable<any> {
-    return this.http.post(BASIC_URL + "authentication", loginRequest);
+    return this.http.post(BASIC_URL + "authentication", loginRequest,
+    {observe: "response"}).pipe(tap(__ => this.log("User Authentication")),
+     map((res : HttpResponse<any>) => {
+      let temp : any = {"userId":1};
+      this.storage.saveUser(temp);
+      let bearedToken : string = "fenilyashjay";
+      this.storage.saveToken(bearedToken);
+      return res;
+     }))
   }
 
   log(message: string): void{
