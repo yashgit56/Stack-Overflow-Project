@@ -1,6 +1,7 @@
 package com.challengers.dtos;
 
 import java.util.Date;
+import java.util.List;
 
 import com.challengers.entities.Image;
 
@@ -13,6 +14,8 @@ public class AnswerDto {
 	private String username;
 	private Image file;
 	private boolean approved;
+	
+	private List<CommentDto> commentDtoList;
 	
 	private int voted;
 	
@@ -72,6 +75,12 @@ public class AnswerDto {
 	}
 	public void setVoted(int voted) {
 		this.voted = voted;
+	}
+	public List<CommentDto> getCommentDtoList() {
+		return commentDtoList;
+	}
+	public void setCommentDtoList(List<CommentDto> commentDtoList) {
+		this.commentDtoList = commentDtoList;
 	}
 	
 	

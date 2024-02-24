@@ -89,6 +89,22 @@ public class Answers {
 	@JsonIgnore
 	private User user;
 	
+	@OneToMany(mappedBy ="answer", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Comment> commentList;
+	
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
+
+	public void setVoteCount(Integer voteCount) {
+		this.voteCount = voteCount;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name="question_id",nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -133,4 +149,5 @@ public class Answers {
 	public void setAnswerVoteList(List<AnswerVote> answerVoteList) {
 		this.answerVoteList = answerVoteList;
 	}
+
 }

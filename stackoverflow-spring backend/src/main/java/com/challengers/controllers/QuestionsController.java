@@ -60,4 +60,10 @@ public class QuestionsController {
 		return ResponseEntity.ok(questionSearchResponseDto) ;	
 	}
 	
+	@GetMapping("/question/latest/{pageNumber}")
+	public ResponseEntity<?> getLatestQuestions(@PathVariable int pageNumber){
+		QuestionSearchResponseDto latestQuestion = questionService.getLatestQuestion(pageNumber);
+		if(latestQuestion == null) return ResponseEntity.notFound().build();
+		return ResponseEntity.ok(latestQuestion);
+	}
 }

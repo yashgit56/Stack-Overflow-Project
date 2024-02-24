@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.challengers.dtos.AllQuestionResponseDto;
 import com.challengers.dtos.AnswerDto;
+import com.challengers.dtos.CommentDto;
 import com.challengers.dtos.QuestionDTO;
 import com.challengers.dtos.QuestionSearchResponseDto;
 import com.challengers.dtos.singleQuestionDto;
@@ -112,15 +113,24 @@ public class QuestionServiceClass implements QuestionService {
 				).findFirst() ;
 				
 				answerDto.setVoted(0);
-				if(optionalAnswerVote.get().getVoteType().equals(VoteType.UPVOTE)) {
-					answerDto.setVoted(1);
+				if(optionalAnswerVote.isPresent()) {
+					if(optionalAnswerVote.get().getVoteType().equals(VoteType.UPVOTE)) {
+						answerDto.setVoted(1);
+					}
+					else {
+						answerDto.setVoted(-1);
+					}					
 				}
-				else {
-					answerDto.setVoted(-1);
-				}
-						
 				answerDto.setFile(imageRepository.findByAnswer(answer));
 				answerDtoList.add(answerDto);
+				
+				// get comment dto list
+				List<CommentDto> commentDtoList = new ArrayList();
+				answer.getCommentList().forEach(comment -> {
+					CommentDto commentDto = comment.getCommentDto();
+					commentDtoList.add(commentDto);
+				});
+				answerDto.setCommentDtoList(commentDtoList);
 			}
 			singlequestiondto.setAnswerDtoList(answerDtoList);
 			return singlequestiondto;
@@ -157,6 +167,19 @@ public class QuestionServiceClass implements QuestionService {
 			return questionSearchResponseDto;
 		}
 		return null;
+	}
+
+	@Override
+	public QuestionSearchResponseDto getLatestQuestion(int pageNum) {
+		// TODO Auto-generated method stub
+		Pageable paging = PageRequest.of(pageNum, SEARCH_RESULT_PER_PAGE);
+		Page<Questions> questionPage;
+		questionPage = questionRepo.findAllByOrderByCreatedDateDesc(paging);
+		QuestionSearchResponseDto questionSearchResponseDto = new QuestionSearchResponseDto();
+		questionSearchResponseDto.setQuestionDtoList(questionPage.stream().map(Questions::getQuestionDto).collect(Collectors.toList())); 
+		questionSearchResponseDto.setTotalPages(questionPage.getTotalPages());
+		questionSearchResponseDto.setPageNumber(questionPage.getPageable().getPageNumber());
+		return questionSearchResponseDto;
 	}
 	
 	

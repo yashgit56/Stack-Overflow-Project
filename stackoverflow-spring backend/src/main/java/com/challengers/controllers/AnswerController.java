@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.challengers.dtos.AnswerDto;
+import com.challengers.dtos.CommentDto;
 import com.challengers.services.answer.AnswerService;
 
 @RestController
@@ -35,5 +36,14 @@ public class AnswerController {
 		AnswerDto approveAnswerDto = answerService.approveAnswer(answerId);
 		if(approveAnswerDto == null) return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(approveAnswerDto);
+	}
+	
+	@PostMapping("/comment")
+	public ResponseEntity<?> postCommentToAnswer(@RequestBody CommentDto commentDto){
+		CommentDto postedCommentDto = answerService.postCommentToAnswer(commentDto);
+		if(postedCommentDto == null) {
+			return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).body(postedCommentDto);
 	}
 }
