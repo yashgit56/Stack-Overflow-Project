@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Optional;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +15,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.challengers.dtos.AuthenticationDTO;
+import com.challengers.dtos.AuthenticationResponse;
 import com.challengers.entities.User;
 import com.challengers.repositories.UserRepository;
 
@@ -42,32 +43,34 @@ public class AuthenticationController {
     
     
     @PostMapping("/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationDTO authenticationDTO, HttpServletResponse response) throws IOException, JSONException {
+    public AuthenticationResponse createAuthenticationToken(@RequestBody AuthenticationDTO authenticationDTO, HttpServletResponse response) throws IOException, JSONException {
+    	
+    	AuthenticationResponse res = new AuthenticationResponse() ;
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationDTO.getEmail(),authenticationDTO.getPassword()));
         }
         catch(BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect Email or Password");
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect Email or Password");
+        	 res.setAuthenticated(false);
+        	 return res ;
         }
         catch(DisabledException disabledException) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User is not created");
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User is not created");
+        	res.setAuthenticated(false);
+        	return res ;
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationDTO.getEmail());
         
         Optional<User> optionalUser = userRepo.findFirstByEmail(userDetails.getUsername()) ;
         
+        AuthenticationDTO authDTO = new AuthenticationDTO() ;
+        
         
         if(optionalUser.isPresent()) {
-            return ResponseEntity.ok(new JSONObject()
-                .put("authenticated", true)
-                .put("userId", optionalUser.get().getId())
-                .toString()
-            );
+        	res.setAuthenticated(true);
         } else {
-            return ResponseEntity.ok(new JSONObject()
-                .put("authenticated", false)
-                .toString()
-            );
+        	res.setAuthenticated(false);
         }
+        return res ;
     }
 }

@@ -14,12 +14,14 @@ import { MatInputModule } from "@angular/material/input";
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule} from "@angular/material/snack-bar";
+import { AboutOurTeamComponent } from './about-our-team/about-our-team.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AboutOurTeamComponent
   ],
   imports: [
     BrowserModule,

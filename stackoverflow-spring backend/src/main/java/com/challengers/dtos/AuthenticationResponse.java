@@ -1,19 +1,20 @@
 package com.challengers.dtos;
 
 public class AuthenticationResponse {
-	private String jwtToken ;
+	private boolean isAuthenticated ;
+	
 
-	public AuthenticationResponse(String jwtToken) {
+	public AuthenticationResponse() {
 		super();
-		this.jwtToken = jwtToken;
 	}
 
-	public String getJwtToken() {
-		return jwtToken;
+	public boolean isAuthenticated() {
+		return isAuthenticated;
 	}
 
-	public void setJwtToken(String jwtToken) {
-		this.jwtToken = jwtToken;
+	public void setAuthenticated(boolean isAuthenticated) {
+		this.isAuthenticated = isAuthenticated;
 	}
+
 	
 }
