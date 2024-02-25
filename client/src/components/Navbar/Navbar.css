@@ -1,0 +1,242 @@
+.main-nav {
+  min-height: 50px;
+  width: 100%;
+  margin-right:0px;
+  border-top: solid 3px #ef8236;
+  box-shadow: 0px 1px 5px #00000033;
+  position: fixed;
+  z-index: 15;
+  top: 0%;
+  left: 0%;
+  background-color: #f8f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  height: 100%;
+  min-width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slide-in-icon {
+  display: none;
+  transition: 0.2s;
+  padding: 5px 6px 3px 6px;
+  border-radius: 50%;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .navbar-1 {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navbar .navbar-2 {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo {
+  padding: 5px ;
+}
+
+.nav-item {
+  margin: 0px;
+  font-size: small;
+  font-weight: 500;
+  text-decoration: none;
+  color: rgb(69, 69, 69);
+  transition: 0.2s;
+}
+
+.nav-btn {
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.nav-item:hover,
+.slide-in-icon:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.navbar .navbar-1 form {
+  flex-grow: 1;
+  padding: 0px 12px;
+  position: relative;
+}
+
+.navbar .navbar-1 form input {
+  min-width: 90%;
+  margin: 0;
+  padding: 8px 10px 8px 32px;
+  font-size: 13px;
+  border: solid 1px #0000003e;
+  border-radius: 3px;
+}
+
+.navbar .navbar-1 form .search-icon {
+  position: absolute;
+  left: 25px;
+  top: 8px;
+}
+
+.nav-links {
+  padding: 7px 13px;
+  border: solid 1px blue;
+  border-radius: 3px;
+  background-color: #e7f8fe;
+  cursor: pointer;
+}
+
+.nav-links:hover {
+  background-color: #d3e4eb;
+}
+
+@media screen and (max-width: 1120px) {
+  .navbar .navbar-1 form {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .slide-in-icon {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .navbar .navbar-1 .res-nav {
+    display: none;
+  }
+}
+
+.navbar-2 {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  background-color: #009dff;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links:hover {
+  background-color: #007acc;
+}
+
+.avatar-container {
+  margin-right: 20px;
+}
+
+.avatar-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.avatar-link:hover .avatar {
+  background-color: #007acc;
+}
+
+
+
+.logout-button {
+  background-color: transparent;
+  color: #009dff;
+  border: 1px solid #009dff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #009dff;
+  color: #ffffff;
+}
+
+.avatar-container {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.avatar-link:hover .avatar {
+  background-color: #007acc;
+}
+
+/* .avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #009dff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+} */
+
+.first-letter-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width:  30px;
+  height:  30px;
+  border-radius:  50%;
+  background-color: #512DA8; /* Example background color */
+  color: #fff; /* Example text color */
+  margin-right:  10px; /* Adjust the gap size as needed */
+}
+
+
+.logout-button {
+  background-color: transparent;
+  color: #009dff;
+  border: 1px solid #009dff;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #009dff;
+  color: #ffffff;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #009dff;
+  color: white;
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  justify-content: center; /* Centers the text horizontally */
+  align-items: center; /* Centers the text vertically */
+  margin-right: 10px;
+  font-size: 16px;
+  text-transform: uppercase; /* Ensures the letter is uppercase */
+  font-weight: bold; /* Makes the letter bold */
+}

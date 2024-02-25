@@ -1,0 +1,68 @@
+/* Ask Question Page */
+.ask-question {
+  min-height: 80vh;
+  background-color: #cde3f1; /* Soft blue background */
+}
+
+.ask-ques-container {
+  margin: auto;
+  padding: 40px;
+  max-width: 800px; /* Reduced max-width for better readability */
+}
+
+.ask-ques-container h1 {
+  padding-bottom: 20px;
+  font-size: 32px;
+  color: #333; /* Darkened font color */
+}
+
+.ask-ques-container form .ask-form-container {
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ask-form-container label h4 {
+  margin-bottom: 10px;
+  font-size: 18px; /* Increased font size */
+  color: #333; /* Darkened font color */
+}
+
+.ask-form-container label p {
+  margin-bottom: 20px; /* Increased margin bottom for spacing */
+  font-size: 16px;
+  color: #666; /* Adjusted color */
+}
+
+.ask-form-container label input,
+.ask-form-container label textarea {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  resize: none;
+  transition: border-color 0.3s;
+}
+
+.ask-form-container label input:focus,
+.ask-form-container label textarea:focus {
+  border-color: #007bff; /* Highlight border color on focus */
+}
+
+.review-btn {
+  margin-top: 30px;
+  padding: 14px 24px;
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.review-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Add slight lift effect on hover */
+}

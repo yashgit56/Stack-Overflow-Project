@@ -1,0 +1,78 @@
+/* User List Container Component */
+.user-list-container {
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 30px;
+  justify-items: center;
+  background-image: linear-gradient(120deg,#3cb8e3, #009dff);
+}
+
+.user-profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 30px;
+  text-decoration: none;
+  color: #333;
+  width: 180px; 
+  height: 180px;
+  border-radius: 10px; 
+  overflow: hidden; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #5be5f4;
+}
+
+/* User Component */
+.user-profile-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* .user-profile-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+} */
+
+.user-profile-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased elevation on hover */
+}
+
+/* .user-profile-link h3 {
+  margin: 0;
+  padding: 12px;
+  background-color: #f0f0f0;
+  border-radius: 40%;
+  font-size: 24px;
+  color: #555;
+  transition: background-color 0.3s;
+} */
+
+.user-profile-link h3 {
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 50%; /* Circular shape for initials */
+  font-size: 24px;
+  color: #555;
+  transition: background-color 0.3s;
+  flex-shrink: 0; /* Prevent initials from shrinking */
+  line-height: 1; /* Ensure initials are vertically centered */
+}
+
+.user-profile-link:hover h3 {
+  background-color: #d0d0d0;
+}
+
+.user-profile-link h5 {
+  margin: 8px 0;
+  font-size: 18px;
+  font-weight: bold;
+}

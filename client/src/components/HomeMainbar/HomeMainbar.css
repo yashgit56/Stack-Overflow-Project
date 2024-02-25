@@ -1,0 +1,102 @@
+/* Main container */
+.main-bar {
+  width: calc(100% - 300px - 65px);
+  float: left;
+  margin: 25px 0px;
+  padding: 20px;
+  background-color: #d5a9cc;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.main-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-bar-header h1 {
+  font-weight: bold;
+  font-size: 24px;
+  color: #333333;
+}
+
+.main-bar-header .ask-btn {
+  padding: 12px 24px;
+  border-radius: 6px;
+  background-color: #009dff;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.main-bar-header .ask-btn:hover {
+  background-color: #0086d8;
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Question container */
+.display-question-container {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5; /* Updated background color */
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.display-question-container:hover {
+  background-color: #ebebeb; /* Hover background color */
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Question details */
+.display-question-details {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+
+.question-title-link {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.question-title-link:hover {
+  color: #0056b3;
+}
+
+/* Tags */
+.display-tags-time .display-tags {
+  display: flex; /* Display tags side by side */
+  flex-wrap: wrap; /* Allow wrapping if content exceeds container width */
+}
+
+.display-tags-time .display-tags p {
+  margin: 0;
+  padding: 4px 8px;
+  font-size: 12px;
+  background-color: #f0f0f0;
+  color: #666666;
+  border-radius: 16px;
+  margin-right: 8px;
+  transition: background-color 0.3s;
+  margin-bottom: 8px; /* Add some margin between tags */
+}
+
+.display-tags-time .display-tags p:hover {
+  background-color: #cde2f9;
+}
+
+.display-tags-time .display-time {
+  font-size: 14px;
+  color: #666666;
+}
